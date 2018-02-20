@@ -5,14 +5,53 @@ import Cockpit from '../components/Cockpit/Cockpit';
 //import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
-	state = {
+	
+	// Component Creation Lifecycle Hooks
+	constructor(props) {
+		super(props);
+		console.log('[App.js] inside onstructor()', props);
+
+		this.state = {
+			persons: [
+				{ id: 1, name: 'Max', age: 28 },
+				{ id: 2, name: 'Manu', age: 29 },
+				{ id: 3, name: 'Stephanie', age: 26 }
+			],
+			showPersons: false
+		}
+	}
+
+	componentWillMount() {
+		console.log('[App.js] inside componentWillMount()');
+	}
+
+	componentDidMount() {
+		console.log('[App.js] inside componendDidMout()');
+	}
+	
+	// Component Update Lifecycle Hooks
+	shouldComponentUpdate(nextProps, nextState) {
+		console.log('[UPDATE App.js] inside shouldComponentUpdate()', nextProps, nextState);
+		return nextState.persons !== this.state.persons ||
+		nextState.showPersons !== this.state.showPersons;
+	}
+
+	componentWillUpdate(nextProps, nextState) {
+		console.log('[UPDATE App.js] inside componentWillUpdate()', nextProps, nextState);
+	}
+
+	componentDidUpdate() {
+		console.log('[UPDATE App.js] inside componentDidUpdate()');
+	}
+
+	/*state = {
 		persons: [
 			{ id: 1, name: 'Max', age: 28 },
 			{ id: 2, name: 'Manu', age: 29 },
 			{ id: 3, name: 'Stephanie', age: 26 }
 		],
 		showPersons: false
-	}
+	}*/
 
 	nameChangedHandler = (event, id) => {
 		// Get the index in the persons array and confirm that it matches the id argument.
@@ -51,6 +90,7 @@ class App extends Component {
 	}
 
 	render() {
+		console.log('[App.js] inside render()');
 		let persons = null;
 		
 		if (this.state.showPersons) {
@@ -62,6 +102,7 @@ class App extends Component {
 
 		return (
 			<div className="App">
+				<button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
 				<Cockpit 
 					appTitle={this.props.title}
 					showPersons={this.state.showPersons}
