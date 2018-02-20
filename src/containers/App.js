@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 //import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
-class App extends Component {
+class App extends PureComponent {
 	
 	// Component Creation Lifecycle Hooks
 	constructor(props) {
@@ -30,11 +30,11 @@ class App extends Component {
 	}
 	
 	// Component Update Lifecycle Hooks
-	shouldComponentUpdate(nextProps, nextState) {
+/*	shouldComponentUpdate(nextProps, nextState) {
 		console.log('[UPDATE App.js] inside shouldComponentUpdate()', nextProps, nextState);
 		return nextState.persons !== this.state.persons ||
 		nextState.showPersons !== this.state.showPersons;
-	}
+	}*/
 
 	componentWillUpdate(nextProps, nextState) {
 		console.log('[UPDATE App.js] inside componentWillUpdate()', nextProps, nextState);
