@@ -22,7 +22,12 @@ class Persons extends PureComponent {
 		console.log('[UPDATE Persons.js] inside componentWillReceiveProps()', nextProps);
 	}
 
-	/*shouldComponentUpdate(nextProps, nextState) {
+	/* 
+		This method is only run when you want to choose 
+		whether or not to update this and child components.
+		An alternative is to import and extend PureComponent.
+	
+		shouldComponentUpdate(nextProps, nextState) {
 		console.log('[UPDATE Persons.js] inside shouldComponentUpdate()', nextProps, nextState);
 		return nextProps.persons !== this.props.persons ||
 			nextProps.changed !== this.props.changed ||
