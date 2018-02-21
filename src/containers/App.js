@@ -20,7 +20,8 @@ class App extends PureComponent {
 				{ id: 2, name: 'Manu', age: 29 },
 				{ id: 3, name: 'Stephanie', age: 26 }
 			],
-			showPersons: false
+			showPersons: false,
+			toggleClicked: 0
 		}
 	}
 
@@ -89,7 +90,14 @@ class App extends PureComponent {
 		// Set a static variable to the state value of showPersons.
 		const doesShow = this.state.showPersons;
 		// Update state with the inverse of doesShow.
-		this.setState({ showPersons: !doesShow })
+		// Tip: This is the safest way to update state when the 
+		// new state depends on old state.
+		this.setState( ( prevState, props ) =>{ 
+			return {
+				showPersons: !doesShow,
+				toggleClicked: prevState.toggleClicked + 1
+			}
+		} )
 	}
 
 	render() {
